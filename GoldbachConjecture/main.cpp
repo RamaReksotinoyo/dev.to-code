@@ -2,53 +2,49 @@
 
 
 int is_prime(int n){
-    int flag = 1;
-    for (int j = 2; j < n/2; j++){
-        if((n%j) == 0){
-            return flag-1;
+    int num = 1;
+    for (int i = 2; i < n/2; i++){
+        if((n%i) == 0){
+            return num-1;
         }
     }
-    return flag;
+    return num;
 }
 
-void goldbach(int g){
-    int flag = 0;
+void solve(){
+    int number = 0;
     int primes[100000] = {2};
     int j = 0;
-    if(primes[j]<g){
-        for (int i = primes[j]+1; i < g; i++){
-            if(is_prime(i) == 1){
-                j++;
-                primes[j] = i;
-            }
-        }       
-    }
-    for (int i = 0; i < j; i++){
-        for (int k = 0; k < j; k++){
-            if(primes[i] + primes[k] == g){
-				std::cout<<g<<" = "<<primes[i]<<" + "<<primes[k]<<std::endl;
-                break;
-            }
-        }
-    }
-
-}
-
-
-int main(){
-    int number = 0;
-    while(1){
-		std::cout<<"Enter even number:";
+    while(true){
+		std::cout<<"Input even number:";
 		std::cin>>number;
         if(number > 2 && number % 2==0){
-            goldbach(number);
-       		break;
+
+            if(primes[j]<number){
+                for (int i = primes[j]+1; i < number; i++){
+                    if(is_prime(i) == 1){
+                        j++;
+                        primes[j] = i;
+                    }
+                }       
+            }
+            for (int i = 0; i < j; i++){
+                for (int k = 0; k < j; k++){
+                    if(primes[i] + primes[k] == number){
+                        std::cout<<primes[i]<<" + "<<primes[k]<<" = "<<number<<std::endl;
+                        break;
+                    }
+                }
+            }
 	   	}
         else{
-			std::cout<<"Incorrect number!"<<std::endl;
+			std::cout<<"Input must a even numbers"<<std::endl;
         }
-        std::cout<<std::endl;
     }
+}
+
+int main(){
+    solve();
     return 0;
 }
 
