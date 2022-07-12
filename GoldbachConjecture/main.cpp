@@ -1,27 +1,5 @@
 #include <iostream>
 
-int primes[100000] = {2};
-int j = 0;
-
-int is_prime(int n);
-void goldbach(int g);
-
-int main(){
-    int number = 0;
-    while(1){
-		std::cout<<"Enter even number:";
-		std::cin>>number;
-        if(number > 2 && number % 2==0){
-            goldbach(number);
-       		break;
-	   	}
-        else{
-			std::cout<<"Incorrect number!"<<std::endl;
-        }
-        cout<<endl;
-    }
-    return 0;
-}
 
 int is_prime(int n){
     int flag = 1;
@@ -35,7 +13,8 @@ int is_prime(int n){
 
 void goldbach(int g){
     int flag = 0;
-
+    int primes[100000] = {2};
+    int j = 0;
     if(primes[j]<g){
         for (int i = primes[j]+1; i < g; i++){
             if(is_prime(i) == 1){
@@ -44,7 +23,6 @@ void goldbach(int g){
             }
         }       
     }
-
     for (int i = 0; i < j; i++){
         for (int k = 0; k < j; k++){
             if(primes[i] + primes[k] == g){
@@ -55,3 +33,23 @@ void goldbach(int g){
     }
 
 }
+
+
+int main(){
+    int number = 0;
+    while(1){
+		std::cout<<"Enter even number:";
+		std::cin>>number;
+        if(number > 2 && number % 2==0){
+            goldbach(number);
+       		break;
+	   	}
+        else{
+			std::cout<<"Incorrect number!"<<std::endl;
+        }
+        std::cout<<std::endl;
+    }
+    return 0;
+}
+
+
